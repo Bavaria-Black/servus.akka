@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servus.Akka", "Servus.Akka\Servus.Akka.csproj", "{BC30B88D-1E33-49BF-9867-058F63DBBB00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servus.Akka.Tests", "Servus.Akka.Tests\Servus.Akka.Tests.csproj", "{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC30B88D-1E33-49BF-9867-058F63DBBB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC30B88D-1E33-49BF-9867-058F63DBBB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC30B88D-1E33-49BF-9867-058F63DBBB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC30B88D-1E33-49BF-9867-058F63DBBB00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
