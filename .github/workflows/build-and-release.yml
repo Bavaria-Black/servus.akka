@@ -31,13 +31,13 @@ jobs:
       run: dotnet restore ${{ env.PROJECT_PATH }}
     
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore ${{ env.PROJECT_PATH }}
 
     - name: Run tests
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal ${{ env.PROJECT_PATH }}
 
     - name: Create NuGet package
-      run: dotnet pack ${{ env.PROJECT_PATH }} --configuration Release --no-build --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+      run: dotnet pack --configuration Release --no-build --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }} ${{ env.PROJECT_PATH }}
 
     - name: Upload package artifacts
       uses: actions/upload-artifact@v4
