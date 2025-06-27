@@ -7,6 +7,10 @@
 [![License](https://img.shields.io/github/license/Bavaria-Black/servus.akka)](LICENSE)
 [![Downloads](https://img.shields.io/nuget/dt/Servus.Akka.svg)](https://www.nuget.org/packages/Servus.Akka/)
 
+<p align="center">
+     <img width="256" height="256" src="logo.svg" alt="servus.akka logo">
+</p>
+
 ## Overview
 
 I started **Servus.Akka** after I wrote the same quality of life improvements for the third time across different projects. This library contains all those little utilities, extensions, and helpers that make working with Akka.NET more enjoyable and productive.
