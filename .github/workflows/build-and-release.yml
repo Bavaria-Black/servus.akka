@@ -65,7 +65,8 @@ jobs:
 
     - name: Publish to NuGet
       run: |
-        dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg \
+        dotnet nuget push \
           --api-key ${{ secrets.NUGET_API_KEY }} \
           --source https://api.nuget.org/v3/index.json \
-          --skip-duplicate
+          --skip-duplicate \
+          ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg
