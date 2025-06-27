@@ -1,10 +1,12 @@
 ﻿using Akka.Actor;
 using Akka.Hosting;
+using Akka.Hosting.TestKit;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Servus.Akka.Tests;
 
-public class RegisterExtensionTests
+public class RegisterExtensionTests : TestKit
 {
     public class TestActor1 : ReceiveActor
     {
@@ -12,43 +14,29 @@ public class RegisterExtensionTests
     public class TestActor2 : ReceiveActor
     {
     }
+    public class TestActor3 : ReceiveActor
+    {
+    }
 
     [Fact]
-    public void RegisterMultipleActors()
+    public void ActorsAreRegistered()
     {
-        var builder = WebApplication.CreateBuilder();
-        builder.Services.AddAkka("", configurationBuilder =>
-        {
-            configurationBuilder
-                .WithResolvableActors(helper =>
-                {
-                    helper
-                        .Register<TestActor1>()
-                        .Register<TestActor2>();
-                })
-                .WithActors((b, r) =>
-                {
-                    r.TryGet<TestActor1>(out var actor1);
-                    Assert.NotNull(actor1);
-                    r.TryGet<TestActor2>(out var actor2);
-                    Assert.NotNull(actor2);
-                });
-        });
+        var registry = Host.Services.GetRequiredService<IActorRegistry>();
+        
+        Assert.True(registry.TryGet<TestActor1>(out _));
+        Assert.True(registry.TryGet<TestActor2>(out _));
+        Assert.True(registry.TryGet<TestActor3>(out _));
     }
-    
-    [Fact]
-    public void RegisterSingleActor()
+
+    protected override void ConfigureAkka(AkkaConfigurationBuilder builder, IServiceProvider provider)
     {
-        var builder = WebApplication.CreateBuilder();
-        builder.Services.AddAkka("", configurationBuilder =>
-        {
-            configurationBuilder
-                .WithResolvableActor<TestActor1>()
-                .WithActors((b, r) =>
-                {
-                    r.TryGet<TestActor1>(out var actor);
-                    Assert.NotNull(actor);
-                });
-        });
+        builder
+            .WithResolvableActors(helper =>
+            {
+                helper
+                    .Register<TestActor1>()
+                    .Register<TestActor2>();
+            })
+            .WithResolvableActor<TestActor3>();
     }
 }
