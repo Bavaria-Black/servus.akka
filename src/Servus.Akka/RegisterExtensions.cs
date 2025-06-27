@@ -18,7 +18,7 @@ public class ActorRegistrationHelper
     }
 
     public ActorRegistrationHelper Register<TActor>(string? name = null, params object[] args)
-        where TActor : ActorBase, new()
+        where TActor : ActorBase
     {
         var props = _resolver.Props<TActor>(args);
         var actorRef = _system.ActorOf(props, name);
@@ -38,7 +38,7 @@ public static class RegisterExtensions
 
     public static AkkaConfigurationBuilder WithResolvableActor<TActor>(this AkkaConfigurationBuilder builder,
         string? name = null, params object[] args)
-        where TActor : ActorBase, new()
+        where TActor : ActorBase
     {
         return builder.WithActors((system, registry) =>
         {
