@@ -4,6 +4,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servus.Akka", "Servus.Akka\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servus.Akka.Tests", "Servus.Akka.Tests\Servus.Akka.Tests.csproj", "{D6A1F772-DF59-432E-B8CF-BFC037D2A14A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{095E8D9F-0786-484A-8C80-23EF3AC02F19}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\build-and-release.yml = ..\.github\workflows\build-and-release.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

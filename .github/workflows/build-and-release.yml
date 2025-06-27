@@ -28,8 +28,8 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore dependencies
-      run: dotnet restore
-
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
