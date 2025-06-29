@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIconUrl>logo.png</PackageIconUrl>
+        <PackageIcon>logo.png</PackageIcon>
         <RepositoryUrl>https://github.com/Bavaria-Black/servus.akka</RepositoryUrl>
     </PropertyGroup>
     
