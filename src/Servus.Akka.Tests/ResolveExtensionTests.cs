@@ -1,12 +1,7 @@
 ﻿
 using Akka.Actor;
-using Akka.Actor.Setup;
 using Akka.Hosting;
 using Akka.Hosting.TestKit;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Servus.Akka.DependencyInjection;
 
 namespace Servus.Akka.Tests;
 

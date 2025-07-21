@@ -15,6 +15,7 @@
     <ItemGroup>
       <PackageReference Include="Akka.Hosting" Version="1.5.44" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+      <PackageReference Include="Servus.Core" Version="0.22.2" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using Akka.Actor;
 using Akka.Hosting;
 using Akka.Hosting.TestKit;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Servus.Akka.Tests;
