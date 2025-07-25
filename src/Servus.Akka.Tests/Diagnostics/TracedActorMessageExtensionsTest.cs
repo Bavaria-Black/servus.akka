@@ -1,7 +1,8 @@
 ﻿using Akka.Actor;
 using Akka.Util;
+using Servus.Akka.Diagnostics;
 
-namespace Servus.Akka.Tests;
+namespace Servus.Akka.Tests.Diagnostics;
 
 public class TracedActorMessageExtensionsTest
 {
@@ -40,7 +41,7 @@ public class TracedActorMessageExtensionsTest
 
 public class TestTeller : ICanTell
 {
-    public object LatestMessage { get; private set; }
+    public object? LatestMessage { get; private set; }
 
     public void Tell(object message, IActorRef sender)
     {
@@ -56,14 +57,14 @@ public sealed class TestActorRef : TestTeller, IActorRef
         return other?.Equals(this) ?? false;
     }
 
-    public int CompareTo(IActorRef? other)
-    {
-        return other?.CompareTo(this) ?? 1;
-    }
-
     public ISurrogate ToSurrogate(ActorSystem system)
     {
         throw new NotImplementedException();
+    }
+
+    public int CompareTo(IActorRef? other)
+    {
+        return other?.CompareTo(this) ?? 1;
     }
 
     public int CompareTo(object? obj)
@@ -71,5 +72,5 @@ public sealed class TestActorRef : TestTeller, IActorRef
         throw new NotImplementedException();
     }
 
-    public ActorPath Path { get; } 
+    public ActorPath Path { get; } = ActorPath.Parse("akka://test/user/blub");
 }
