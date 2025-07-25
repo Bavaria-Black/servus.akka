@@ -21,6 +21,12 @@ public static class TracedActorMessageExtensions
         recipient.Tell(message, sender);
     }
 
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, object message)
+        => await recipient.AskTraced<T>(new TracedMessageEnvelope(message));
+
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message)
+        => await recipient.Ask<T>(message);
+
     public static void ForwardTraced(this IActorRef recipient, object message)
         => recipient.ForwardTraced(new TracedMessageEnvelope(message));
 
