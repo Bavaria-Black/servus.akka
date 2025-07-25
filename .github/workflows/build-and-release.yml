@@ -56,7 +56,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore ${{ env.PROJECT_PATH }} /p:Version=${{ steps.gitversion.outputs.semVer }}
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal ${{ env.PROJECT_PATH }}
+        run: dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage;Format=opencover" --verbosity normal ${{ env.PROJECT_PATH }}
 
       - name: stop sonar scanner
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
