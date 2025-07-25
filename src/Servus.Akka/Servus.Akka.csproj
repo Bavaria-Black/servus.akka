@@ -1,9 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Authors>Christian Dirnhofer</Authors>
+        <Company>Bavaria-Black</Company>
         <PackageIcon>logo.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <!--<PackageProjectUrl>https://servusakka.readthedocs.io</PackageProjectUrl>-->
         <RepositoryUrl>https://github.com/Bavaria-Black/servus.akka</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>Copyright (c) Bavaria-Black 2025</Copyright>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -21,7 +27,24 @@
     <ItemGroup>
         <None Include="../../README.md" Pack="true" PackagePath="\"/>
         <None Include="../../logo.png" Pack="true" PackagePath=""/>
+        <None Include="../../LICENSE" Pack="true" PackagePath="\"/>
+        <None Include="../../.github/workflows/build-and-release.yml" />
     </ItemGroup>
+    
+    <Target Name="ServusLogo" BeforeTargets="Build">
+        <Message Text=" " Importance="high" />
+        <Message Text=" " Importance="high" />
+        <Message Text="                                   /\" Importance="high" />
+        <Message Text="                                  /  \" Importance="high" />
+        <Message Text="                                 /    \__" Importance="high" />
+        <Message Text="                           /\   /        \    /\" Importance="high" />
+        <Message Text="                          /  \_/          \__/  \" Importance="high" />
+        <Message Text="                         /                       \" Importance="high" />
+        <Message Text="                        /_________________________\" Importance="high" />
+        <Message Text="                                  servus!" Importance="high" />
+        <Message Text=" " Importance="high" />
+        <Message Text=" " Importance="high" />
+    </Target>
 
     <ItemGroup>
       <Folder Include="Actor\" />
