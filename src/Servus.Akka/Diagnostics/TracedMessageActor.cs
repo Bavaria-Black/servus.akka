@@ -46,7 +46,7 @@ public class TracedMessageActor : UntypedActor
     /// Changes the actor's behavior and replaces the current receive handler with the specified handler.
     /// </summary>
     /// <param name="configure">Configures the new handler by calling the different Receive overloads.</param>
-    protected new void Become(Action configure)
+    protected void Become(Action configure)
     {
         _handlerRegistry.Clear();
 
