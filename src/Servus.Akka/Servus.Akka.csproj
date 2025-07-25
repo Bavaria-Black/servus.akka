@@ -15,11 +15,15 @@
     <ItemGroup>
       <PackageReference Include="Akka.Hosting" Version="1.5.44" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-      <PackageReference Include="Servus.Core" Version="0.22.2" />
+      <PackageReference Include="Servus.Core" Version="0.29.0-alpha.1" />
     </ItemGroup>
 
     <ItemGroup>
         <None Include="../../README.md" Pack="true" PackagePath="\"/>
         <None Include="../../logo.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Actor\" />
     </ItemGroup>
 </Project>
