@@ -83,14 +83,13 @@ public class TracedActorTests : TestKit
     }
 
     [Fact]
-    public void ExtendedPingPongTest()
+    public async Task ExtendedPingPongTest()
     {
         var actor = Sys.ResolveActor<TracedPongActor>();
         actor.TellTraced(555);
         var msg1 = GetExpectedMsg<TracedMessageEnvelope>("555");
 
-        actor.TellTraced(new TracedMessage("ping"));
-        var msg = GetExpectedMsg<TracedMessage>("ping");
+        var msg = await actor.AskTraced<TracedMessage>(new TracedMessage("ping"));
 
         Assert.NotNull(msg.TraceId);
         Assert.NotNull(msg.SpanId);
