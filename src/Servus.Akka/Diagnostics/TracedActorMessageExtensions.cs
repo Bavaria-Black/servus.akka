@@ -20,27 +20,26 @@ public static class TracedActorMessageExtensions
         recipient.Tell(message, sender);
     }
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, object message, TimeSpan? timeout = null)
-        => recipient.AskTraced<T>(message, timeout, CancellationToken.None);
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, object message, TimeSpan? timeout = null)
+        => await recipient.AskTraced<T>(message, timeout, CancellationToken.None);
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, object message, CancellationToken cancellationToken)
-        => recipient.AskTraced<T>(message, null, cancellationToken);
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, object message, CancellationToken cancellationToken)
+        => await recipient.AskTraced<T>(message, null, cancellationToken);
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, object message, TimeSpan? timeout,
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, object message, TimeSpan? timeout,
         CancellationToken cancellationToken)
-        => recipient.AskTraced<T>(new TracedMessageEnvelope(message), timeout, cancellationToken);
+        => await recipient.AskTraced<T>(new TracedMessageEnvelope(message), timeout, cancellationToken);
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, TimeSpan? timeout = null)
-        => recipient.AskTraced<T>(message, timeout, CancellationToken.None);
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, TimeSpan? timeout = null)
+        => await recipient.AskTraced<T>(message, timeout, CancellationToken.None);
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, CancellationToken cancellationToken)
-        => recipient.AskTraced<T>(message, null, cancellationToken);
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, CancellationToken cancellationToken)
+        => await recipient.AskTraced<T>(message, null, cancellationToken);
 
-    public static Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, TimeSpan? timeout,
-        CancellationToken cancellationToken)
+    public static async Task<T> AskTraced<T>(this IActorRef recipient, IWithTracing message, TimeSpan? timeout, CancellationToken cancellationToken)
     {
         message.AddTracing();
-        return recipient.Ask<T>(message, timeout, cancellationToken);
+        return await recipient.Ask<T>(message, timeout, cancellationToken);
     }
 
     public static void ForwardTraced(this IActorRef recipient, object message)
