@@ -97,7 +97,7 @@ public class ContextExtensionTests : TestKit
     }
 }
 
-public record SimpleTracedMessage(string Message, bool Forward = false) : IWithTracing
+public record SimpleTracedMessage(string Message, bool Forward = false, bool Asked = false) : IWithTracing
 {
     public string? TraceId { get; set; }
     public string? SpanId { get; set; }

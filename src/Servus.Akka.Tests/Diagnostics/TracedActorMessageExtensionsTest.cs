@@ -1,76 +1,102 @@
-﻿using Akka.Actor;
-using Akka.Util;
+﻿using Akka.Hosting;
+using Akka.Hosting.TestKit;
 using Servus.Akka.Diagnostics;
+using Servus.Akka.Messaging;
 
 namespace Servus.Akka.Tests.Diagnostics;
 
-public class TracedActorMessageExtensionsTest
+public class TracedActorMessageExtensionsTest : TestKit
 {
+    private class TestTracedActor : TracedMessageActor
+    {
+        public TestTracedActor()
+        {
+            Receive<SimpleTracedMessage>(msg => msg.Asked, msg => Reply(msg));
+            Receive<SimpleTracedMessage>(msg => ReplyTraced(new SimpleTracedMessage("reply")));
+            Receive<string>(msg => ReplyTraced(new TracedMessageEnvelope("reply")));
+        }
+    }
+
+    protected override void ConfigureAkka(AkkaConfigurationBuilder builder, IServiceProvider provider)
+    {
+        builder.WithResolvableActor<TestTracedActor>();
+    }
+
     [Fact]
     public void TellTracedTest()
     {
-        var a = new TestActorRef();
+        var probe = CreateTestProbe();
         var msg = new SimpleTracedMessage("message");
 
-        Assert.Null(msg.TraceId);
-        Assert.Null(msg.SpanId);
+        probe.Ref.TellTraced(msg);
 
-        a.TellTraced(msg);
-
-        Assert.Equal(msg, a.LatestMessage);
-        Assert.NotNull(msg.TraceId);
-        Assert.NotNull(msg.SpanId);
+        var received = probe.ExpectMsg<SimpleTracedMessage>();
+        Assert.Equal(msg, received);
+        Assert.NotNull(received.TraceId);
     }
 
     [Fact]
     public void ForwardTracedTest()
     {
-        var a = new TestActorRef();
+        var probe = CreateTestProbe();
         var msg = new SimpleTracedMessage("message");
 
-        Assert.Null(msg.TraceId);
-        Assert.Null(msg.SpanId);
+        probe.Ref.ForwardTraced(msg);
 
-        a.ForwardTraced(msg);
-
-        Assert.Equal(msg, a.LatestMessage);
-        Assert.NotNull(msg.TraceId);
-        Assert.NotNull(msg.SpanId);
+        var received = probe.ExpectMsg<SimpleTracedMessage>();
+        Assert.Equal(msg, received);
+        Assert.NotNull(received.TraceId);
     }
-}
 
-public class TestTeller : ICanTell
-{
-    public object? LatestMessage { get; private set; }
-
-    public void Tell(object message, IActorRef sender)
+    [Fact]
+    public async Task AskTracedTest()
     {
-        LatestMessage = message;
+        var actor = Sys.ResolveActor<TestTracedActor>();
+        var msg = new SimpleTracedMessage("message", Asked: true);
+
+        var result = await actor.AskTraced<SimpleTracedMessage>(msg);
+
+        Assert.Equal("message", result.Message);
+        Assert.NotNull(result.TraceId);
+        Assert.NotNull(result.SpanId);
+        Assert.Equal(msg.SpanId, result.SpanId);
     }
-}
 
-public sealed class TestActorRef : TestTeller, IActorRef
-{
-
-    public bool Equals(IActorRef? other)
+    [Fact]
+    public async Task AskTracedTimeoutTest()
     {
-        return other?.Equals(this) ?? false;
+        var actor = Sys.ResolveActor<TestTracedActor>();
+        var msg = new SimpleTracedMessage("message", Asked: true);
+
+        var result = await actor.AskTraced<SimpleTracedMessage>(msg, TimeSpan.FromSeconds(5));
+
+        Assert.Equal("message", result.Message);
+        Assert.NotNull(result.TraceId);
+        Assert.NotNull(result.SpanId);
     }
 
-    public ISurrogate ToSurrogate(ActorSystem system)
+    [Fact]
+    public async Task AskTracedCancellationTokenTest()
     {
-        throw new NotImplementedException();
+        var actor = Sys.ResolveActor<TestTracedActor>();
+        var msg = new SimpleTracedMessage("message");
+        using var cts = new CancellationTokenSource();
+
+        var result = await actor.AskTraced<SimpleTracedMessage>(msg, cts.Token);
+
+        Assert.Equal("reply", result.Message);
+        Assert.NotNull(result.TraceId);
+        Assert.NotNull(result.SpanId);
     }
 
-    public int CompareTo(IActorRef? other)
+    [Fact]
+    public async Task AskTracedObjectTest()
     {
-        return other?.CompareTo(this) ?? 1;
-    }
+        var actor = Sys.ResolveActor<TestTracedActor>();
+        var msg = "pure message";
+        var result = await actor.AskTraced<TracedMessageEnvelope>(msg);
 
-    public int CompareTo(object? obj)
-    {
-        throw new NotImplementedException();
+        Assert.Equal("reply", result.Message);
+        Assert.NotNull(result.TraceId);
     }
-
-    public ActorPath Path { get; } = ActorPath.Parse("akka://test/user/blub");
 }
