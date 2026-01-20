@@ -45,8 +45,4 @@
         <Message Text=" " Importance="high" />
         <Message Text=" " Importance="high" />
     </Target>
-
-    <ItemGroup>
-      <Folder Include="Actor\" />
-    </ItemGroup>
 </Project>

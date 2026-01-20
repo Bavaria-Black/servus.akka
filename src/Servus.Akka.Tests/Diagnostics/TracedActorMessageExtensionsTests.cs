@@ -4,7 +4,7 @@ using Servus.Akka.Diagnostics;
 
 namespace Servus.Akka.Tests.Diagnostics;
 
-public class TracedActorMessageExtensionsTest
+public class TracedActorMessageExtensionsTests
 {
     [Fact]
     public void TellTracedTest()
