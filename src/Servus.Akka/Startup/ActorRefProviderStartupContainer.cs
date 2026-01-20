@@ -4,7 +4,7 @@ using Servus.Core.Application.Startup;
 
 namespace Servus.Akka.Startup;
 
-public class AkkaStartupContainer : IHostBuilderSetupContainer
+public class ActorRefProviderStartupContainer : IHostBuilderSetupContainer
 {
     public void ConfigureHostBuilder(IHostBuilder builder)
     {
