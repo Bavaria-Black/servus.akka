@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <Authors>Christian Dirnhofer</Authors>
@@ -21,7 +21,7 @@
     <ItemGroup>
       <PackageReference Include="Akka.Hosting" Version="1.5.44" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-      <PackageReference Include="Servus.Core" Version="0.29.0-alpha.1" />
+      <PackageReference Include="Servus.Core" Version="[0.33.1,)" />
     </ItemGroup>
 
     <ItemGroup>
