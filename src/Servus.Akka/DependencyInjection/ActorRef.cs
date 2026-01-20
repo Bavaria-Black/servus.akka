@@ -2,7 +2,7 @@
 using Akka.Hosting;
 using Akka.Util;
 
-namespace Servus.Akka;
+namespace Servus.Akka.DependencyInjection;
 
 public class ActorRef<TActor>(IActorRegistry registry) : IActorRef<TActor>
     where TActor : ActorBase
