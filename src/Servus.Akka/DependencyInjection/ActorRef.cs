@@ -4,7 +4,7 @@ using Akka.Util;
 
 namespace Servus.Akka.DependencyInjection;
 
-public class ActorRef<TActor>(IActorRegistry registry) : IActorRef<TActor>
+public sealed class ActorRef<TActor>(IActorRegistry registry) : IActorRef
     where TActor : ActorBase
 {
     private readonly IActorRef _actorRef = registry.Get<TActor>();
@@ -13,9 +13,9 @@ public class ActorRef<TActor>(IActorRegistry registry) : IActorRef<TActor>
 
     public bool Equals(IActorRef? other) => _actorRef.Equals(other);
 
-    public int CompareTo(IActorRef? other) => _actorRef.CompareTo(other);
-
     public ISurrogate ToSurrogate(ActorSystem system) =>  _actorRef.ToSurrogate(system);
+
+    public int CompareTo(IActorRef? other) => _actorRef.CompareTo(other);
 
     public int CompareTo(object? obj) => _actorRef.CompareTo(obj);
 

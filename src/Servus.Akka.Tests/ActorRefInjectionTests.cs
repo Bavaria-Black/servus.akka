@@ -25,7 +25,7 @@ public class ActorRefInjectionTests : TestKit
     [Fact]
     public void Test1()
     {
-        var a = Host.Services.GetService<IActorRef<ResolvingTestActor>>();
+        var a = Host.Services.GetService<ActorRef<ResolvingTestActor>>();
         a.Tell("hello");
         ExpectMsg("hello");
     }
