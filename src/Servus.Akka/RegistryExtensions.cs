@@ -14,8 +14,8 @@ public static class RegistryExtensions
     public static bool TryGetActor(this IActorContext context, Type key, out IActorRef actor) => context.System.TryGetActor(key, out actor);
     public static bool TryGetActor(this ActorSystem system, Type key, out IActorRef actor) => system.GetRegistry().TryGet(key, out actor);
     
-    public static Task<IActorRef> GetAsync<T>(this IActorContext context) => context.System.GetAsync<T>();
-    public static Task<IActorRef> GetAsync<T>(this ActorSystem system) => system.GetRegistry().GetAsync<T>();
+    public static Task<IActorRef> GetActorAsync<T>(this IActorContext context) => context.System.GetActorAsync<T>();
+    public static Task<IActorRef> GetActorAsync<T>(this ActorSystem system) => system.GetRegistry().GetAsync<T>();
     
     public static IReadOnlyActorRegistry GetRegistry(this ActorSystem system) => ActorRegistry.For(system);
 }
