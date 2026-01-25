@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
 
 env:
-  DOTNET_VERSION: '8.0.x'
+  GLOBAL_JSON_PATH: './src/global.json'
   PROJECT_PATH: './src/Servus.Akka.sln'
   PACKAGE_OUTPUT_DIRECTORY: './packages'
 
@@ -28,7 +28,8 @@ jobs:
       - name: Install .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          global-json-file: ${{ env.GLOBAL_JSON_PATH }}
+
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v1.1.1
@@ -90,8 +91,8 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-
+          global-json-file: ${{ env.GLOBAL_JSON_PATH }}
+      
       - name: Publish to NuGet
         run: |
           dotnet nuget push --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg
