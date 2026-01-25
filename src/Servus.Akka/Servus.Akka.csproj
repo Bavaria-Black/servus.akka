@@ -9,7 +9,7 @@
         <!--<PackageProjectUrl>https://servusakka.readthedocs.io</PackageProjectUrl>-->
         <RepositoryUrl>https://github.com/Bavaria-Black/servus.akka</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <Copyright>Copyright (c) Bavaria-Black 2025</Copyright>
+        <Copyright>Copyright (c) Bavaria-Black 2025-$([System.DateTime]::Now.Year)</Copyright>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -25,10 +25,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="\"/>
-        <None Include="../../logo.png" Pack="true" PackagePath=""/>
-        <None Include="../../LICENSE" Pack="true" PackagePath="\"/>
-        <None Include="../../.github/workflows/build-and-release.yml" />
+        <None Include="../../README.md" Visible="false" Pack="true" PackagePath="\"/>
+        <None Include="../../logo.png" Visible="false" Pack="true" PackagePath=""/>
+        <None Include="../../LICENSE" Visible="false" Pack="true" PackagePath="\"/>
     </ItemGroup>
     
     <Target Name="ServusLogo" BeforeTargets="Build">
@@ -45,8 +44,4 @@
         <Message Text=" " Importance="high" />
         <Message Text=" " Importance="high" />
     </Target>
-
-    <ItemGroup>
-      <Folder Include="Actor\" />
-    </ItemGroup>
 </Project>
