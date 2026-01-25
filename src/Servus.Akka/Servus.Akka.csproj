@@ -18,10 +18,20 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+        <DebugType>embedded</DebugType>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
     <ItemGroup>
-      <PackageReference Include="Akka.Hosting" Version="[1.5.0,)" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[6.0.0,)" />
-      <PackageReference Include="Servus.Core" Version="[0.33.1,)" />
+        <PackageReference Include="Akka.Hosting" Version="[1.5.0,)"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[6.0.0,)"/>
+        <PackageReference Include="Servus.Core" Version="[0.33.1,)"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -29,19 +39,19 @@
         <None Include="../../logo.png" Pack="true" Visible="false" PackagePath="\"/>
         <None Include="../../LICENSE" Pack="true" Visible="false" PackagePath="\"/>
     </ItemGroup>
-    
+
     <Target Name="ServusLogo" BeforeTargets="Build">
-        <Message Text=" " Importance="high" />
-        <Message Text=" " Importance="high" />
-        <Message Text="                                   /\" Importance="high" />
-        <Message Text="                                  /  \" Importance="high" />
-        <Message Text="                                 /    \__" Importance="high" />
-        <Message Text="                           /\   /        \    /\" Importance="high" />
-        <Message Text="                          /  \_/          \__/  \" Importance="high" />
-        <Message Text="                         /                       \" Importance="high" />
-        <Message Text="                        /_________________________\" Importance="high" />
-        <Message Text="                                  servus!" Importance="high" />
-        <Message Text=" " Importance="high" />
-        <Message Text=" " Importance="high" />
+        <Message Text=" " Importance="high"/>
+        <Message Text=" " Importance="high"/>
+        <Message Text="                                   /\" Importance="high"/>
+        <Message Text="                                  /  \" Importance="high"/>
+        <Message Text="                                 /    \__" Importance="high"/>
+        <Message Text="                           /\   /        \    /\" Importance="high"/>
+        <Message Text="                          /  \_/          \__/  \" Importance="high"/>
+        <Message Text="                         /                       \" Importance="high"/>
+        <Message Text="                        /_________________________\" Importance="high"/>
+        <Message Text="                                  servus!" Importance="high"/>
+        <Message Text=" " Importance="high"/>
+        <Message Text=" " Importance="high"/>
     </Target>
 </Project>

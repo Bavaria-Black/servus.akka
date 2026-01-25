@@ -69,7 +69,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nuget-packages
-          path: ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg
+          path: |
+            ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg
+            ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.snupkg
 
   publish:
     runs-on: ubuntu-latest
