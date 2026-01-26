@@ -2,14 +2,11 @@
 
 > An Akka.NET quality of life extension library. Filled with features that you didn't know you actually missed ;)
 
+![Image](https://raw.githubusercontent.com/Bavaria-Black/servus.akka/refs/heads/main/logo_servus.png)
+
 [![NuGet](https://img.shields.io/nuget/v/Servus.Akka.svg)](https://www.nuget.org/packages/Servus.Akka/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Bavaria-Black/servus.akka/build-and-release.yml?branch=main)](https://github.com/Bavaria-Black/servus.akka/actions)
 [![License](https://img.shields.io/github/license/Bavaria-Black/servus.akka)](LICENSE)
 [![Downloads](https://img.shields.io/nuget/dt/Servus.Akka.svg)](https://www.nuget.org/packages/Servus.Akka/)
-
-<p align="center">
-     <img width="256" height="256" src="logo.svg" alt="servus.akka logo">
-</p>
 
 ## Overview
 
