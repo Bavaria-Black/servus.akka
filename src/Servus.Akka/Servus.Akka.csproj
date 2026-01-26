@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <Authors>Christian Dirnhofer</Authors>
@@ -25,9 +25,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Visible="false" Pack="true" PackagePath="\"/>
-        <None Include="../../logo.png" Visible="false" Pack="true" PackagePath=""/>
-        <None Include="../../LICENSE" Visible="false" Pack="true" PackagePath="\"/>
+        <None Include="../../README.md" Pack="true" PackagePath="\"/>
+        <None Include="../../logo.png" Pack="true" PackagePath=""/>
+        <None Include="../../LICENSE" Pack="true" PackagePath="\"/>
+        <None Include="../../.github/workflows/build-and-release.yml" />
     </ItemGroup>
     
     <Target Name="ServusLogo" BeforeTargets="Build">
